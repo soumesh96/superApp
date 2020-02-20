@@ -25,32 +25,30 @@ const Tab2 = (props) => {
     <div className={classes.root}>
       <Grid container spacing={2}>
         {userData && userData.length > 0
-        ?
-        userData.map(ele => (
-          <Grid item xs={4}>
-          <Card style={{ flexGrow: '1' }}>
-            <CardActionArea>
-              <CardMedia
-                style={{ height: '250px' }}
-                image="https://boygeniusreport.files.wordpress.com/2016/11/puppy-dog.jpg?quality=98&strip=all&w=782"
-                title="Contemplative Reptile"
-              />
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="h2">
-                  Lizard
-                </Typography>
-                <Typography variant="body2" color="textSecondary" component="p">
-                  Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-                  across all continents except Antarctica
-                </Typography>
-              </CardContent>
-            </CardActionArea>
-          </Card>
-        </Grid>
-        ))
-        : 'No Things Found'
-      }
-        Hello
+          ?
+          userData.map((ele, index) => (
+            <Grid item xs={4} key={index}>
+              <Card style={{ flexGrow: '1' }}>
+                <CardActionArea>
+                  <CardMedia
+                    style={{ height: '250px' }}
+                    image={ele.imgUrl}
+                    title={ele.title}
+                  />
+                  <CardContent>
+                    <Typography gutterBottom variant="h5" component="h2">
+                      {ele.header}
+                    </Typography>
+                    <Typography variant="body2" color="textSecondary" component="p">
+                      {ele.desc}
+                    </Typography>
+                  </CardContent>
+                </CardActionArea>
+              </Card>
+            </Grid>
+          ))
+          : 'No Things Found'
+        }
       </Grid>
     </div>
   )

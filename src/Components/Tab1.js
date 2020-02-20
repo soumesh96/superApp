@@ -7,6 +7,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
 
 import Modal from '../ui/modal/modal';
@@ -27,7 +28,8 @@ const Tab1 = ({ simpleAction, userData }) => {
   const [values, setValues] = useState({
     title: '',
     desc: '',
-    imgUrl: ''
+    imgUrl: '',
+    header: ''
   });
 
   const changeValueHandler = (e, type) => {
@@ -37,9 +39,9 @@ const Tab1 = ({ simpleAction, userData }) => {
   const closeModalHandler = () => {
     setShowModal(false);
   }
-  
+
   const submitHandler = () => {
-    console.log(values)
+    console.log(values);
     const data = userData ? [...userData] : [];
     data.push(values);
     simpleAction(data);
@@ -111,41 +113,73 @@ const Tab1 = ({ simpleAction, userData }) => {
           </Card>
         </Grid>
         <Grid item xs={12}>
-          <button onClick={() => {setShowModal(true)}}>Click Me</button>
+          <button onClick={() => { setShowModal(true) }}>Click Me</button>
           <Modal style={{ padding: '10px' }} open={showModal} click={closeModalHandler}>
             <Grid container spacing={2}>
-              <Grid item xs={4}>
-              <TextField
-                id="filled-start-adornment"
-                label="Title*"
-                value={values.title}
-                onChange={(e) => {changeValueHandler(e, 'title')}}
-                type='text'
-                variant="outlined"
-              />
+              <Grid item xs={6}>
+                <TextField
+                  id="filled-start-adornment"
+                  label="Title*"
+                  value={values.title}
+                  onChange={(e) => { changeValueHandler(e, 'title') }}
+                  type='text'
+                  variant="outlined"
+                  fullWidth
+                />
               </Grid>
-              <Grid item xs={4}>
-              <TextField
-                id="filled-start-adornment"
-                label="Description*"
-                value={values.desc}
-                onChange={(e) => {changeValueHandler(e, 'desc')}}
-                type='text'
-                variant="outlined"
-              />
+              <Grid item xs={6}>
+                <TextField
+                  id="filled-start-adornment"
+                  label="Description*"
+                  value={values.desc}
+                  onChange={(e) => { changeValueHandler(e, 'desc') }}
+                  type='text'
+                  variant="outlined"
+                  fullWidth
+                />
               </Grid>
-              <Grid item xs={4}>
-              <TextField
-                id="filled-start-adornment"
-                label="Image Url*"
-                value={values.imgUrl}
-                onChange={(e) => {changeValueHandler(e, 'imgUrl')}}
-                type='text'
-                variant="outlined"
-              />
+              <Grid item xs={6}>
+                <TextField
+                  id="filled-start-adornment"
+                  label="Heading*"
+                  value={values.header}
+                  onChange={(e) => { changeValueHandler(e, 'header') }}
+                  type='text'
+                  variant="outlined"
+                  fullWidth
+                />
               </Grid>
+              <Grid item xs={6}>
+                <TextField
+                  id="filled-start-adornment"
+                  label="Image Url*"
+                  value={values.imgUrl}
+                  onChange={(e) => { changeValueHandler(e, 'imgUrl') }}
+                  type='text'
+                  variant="outlined"
+                  fullWidth
+                />
+              </Grid>
+              <br />
+              <div>
+                <Button onClick={closeModalHandler} style={{ position: 'absolute', bottom: '10px', left: '10px' }} variant="contained" color="secondary">
+                  Go Back
+              </Button>
+                <Button
+                  disabled={!values.title || !values.desc || !values.header || !values.imgUrl}
+                  onClick={submitHandler}
+                  style={{ position: 'absolute', bottom: '10px', right: '10px' }}
+                  variant="contained"
+                  color="primary"
+                >
+                  Submit
+              </Button>
+              </div>
             </Grid>
-            <button onClick={submitHandler}>Submit</button>
+            {/* <button onClick={submitHandler}>Submit</button> */}
+            <div style={{ position: 'relative' }}>
+
+            </div>
           </Modal>
         </Grid>
       </Grid>
