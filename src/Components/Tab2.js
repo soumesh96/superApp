@@ -6,6 +6,7 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
+import Divider from '@material-ui/core/Divider';
 import { connect } from 'react-redux';
 
 const useStyles = makeStyles(theme => ({
@@ -19,14 +20,46 @@ const useStyles = makeStyles(theme => ({
 
 const Tab2 = (props) => {
   const classes = useStyles();
-  const { userData } = props;
+  const { userData, initialData } = props;
   console.log('props', props)
   return (
     <div className={classes.root}>
       <Grid container spacing={2}>
+        <Typography gutterBottom variant="h5" component="h2">
+          Recently Added
+        </Typography>
+        <Divider />
         {userData && userData.length > 0
           ?
           userData.map((ele, index) => (
+            <Grid item xs={4} key={index}>
+              <Card style={{ flexGrow: '1' }}>
+                <CardActionArea>
+                  <CardMedia
+                    style={{ height: '250px' }}
+                    image={ele.imgUrl}
+                    title={ele.title}
+                  />
+                  <CardContent>
+                    <Typography gutterBottom variant="h5" component="h2">
+                      {ele.header}
+                    </Typography>
+                    <Typography variant="body2" color="textSecondary" component="p">
+                      {ele.desc}
+                    </Typography>
+                  </CardContent>
+                </CardActionArea>
+              </Card>
+            </Grid>
+          ))
+          : 'No Things Found'
+        }
+      </Grid>
+      <br />
+      <Grid container spacing={2}>
+        {initialData && initialData.length > 0
+          ?
+          initialData.map((ele, index) => (
             <Grid item xs={4} key={index}>
               <Card style={{ flexGrow: '1' }}>
                 <CardActionArea>
@@ -59,7 +92,8 @@ const Tab2 = (props) => {
 // })
 
 const mapStateToProps = state => ({
-  userData: state.simpleReducer.userData
+  userData: state.simpleReducer.userData,
+  initialData: state.simpleReducer.initialData
 })
 
 export default connect(mapStateToProps, null)(Tab2);
