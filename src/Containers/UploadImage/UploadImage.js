@@ -29,8 +29,14 @@ const UploadImage = ({ simpleAction, userData, fetchInitialData, initialData, up
   const [selectedData, setSelectedData] = useState('');
 
   useEffect(() => {
-    fetchInitialData();
-  }, [fetchInitialData]);
+    if (!initialData.length > 0) {
+      fetchInitialData();
+    }
+  }, [fetchInitialData, initialData]);
+
+  useEffect(() => {
+    console.log('initialData', initialData)
+  })
 
   const closeModalHandler = () => {
     setShowModal(false);

@@ -8,11 +8,14 @@ export default (state = initialState, action) => {
     case 'UPLOAD_DOC':
       const initialData = [...state.initialData];
       const payloadData = [...action.data];
-      payloadData.map(ele => { initialData.push(ele) });
+      console.log('reducers actiosn', action.data);
+      console.log('reducers initialData before', initialData);
+      payloadData.map((ele, index) => initialData.findIndex(ele) === index && initialData.push(ele));
+      console.log('reducers initialData after', initialData);
       return {
         ...state,
         userData: action.data,
-        initialData
+        initialData: initialData
       }
     case 'FETCH_DATA':
       return {

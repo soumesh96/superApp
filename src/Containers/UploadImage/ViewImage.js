@@ -16,6 +16,18 @@ const ViewImage = ({ click, submitData }) => {
   const changeValueHandler = (e, type) => {
     setValues({ ...values, [type]: e.target.value });
   }
+
+  const submithandler = () => {
+    submitData(values);
+    const clearValues = {
+      title: '',
+      desc: '',
+      imgUrl: '',
+      header: ''
+    }
+    setValues(clearValues);
+  }
+
   return (
     <React.Fragment>
       <Typography align='center' variant="h5" component="h2">
@@ -79,7 +91,7 @@ const ViewImage = ({ click, submitData }) => {
         </Button>
           <Button
             disabled={!values.title || !values.desc || !values.header || !values.imgUrl}
-            onClick={() => { submitData(values) }}
+            onClick={submithandler}
             style={{ position: 'absolute', bottom: '10px', right: '10px' }}
             variant="contained"
             color="primary"
