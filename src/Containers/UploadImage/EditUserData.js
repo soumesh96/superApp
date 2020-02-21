@@ -1,15 +1,8 @@
 import React, { useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import { connect } from 'react-redux';
-import Modal from '../ui/modal/modal';
 import Divider from '@material-ui/core/Divider';
 
 const EditUserData = ({ selectedData, click, updateData }) => {
@@ -77,7 +70,12 @@ const EditUserData = ({ selectedData, click, updateData }) => {
           />
         </Grid>
         <div>
-          <Button onClick={click} style={{ position: 'absolute', bottom: '10px', left: '10px' }} variant="contained" color="secondary">
+          <Button
+            onClick={click}
+            style={{ position: 'absolute', bottom: '10px', left: '10px' }}
+            variant="contained"
+            color="secondary"
+          >
             Go Back
           </Button>
           <Button

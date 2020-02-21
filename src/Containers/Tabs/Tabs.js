@@ -6,8 +6,8 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import Tab1 from './Tab1';
-import Tab2 from './Tab2';
+import Tab1 from '../UploadImage/UploadImage';
+import Tab2 from '../Gallery/Gallery';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -58,7 +58,7 @@ export default function SimpleTabs() {
     <div className={classes.root}>
       <AppBar position="static">
         <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
-          <Tab label="USer" {...a11yProps(0)} />
+          <Tab label="Upload Image" {...a11yProps(0)} />
           <Tab label="Gallery" {...a11yProps(1)} />
         </Tabs>
       </AppBar>
