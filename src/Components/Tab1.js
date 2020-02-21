@@ -8,7 +8,9 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import Divider from '@material-ui/core/Divider';
 import { connect } from 'react-redux';
+import LibraryAddIcon from '@material-ui/icons/LibraryAdd';
 
 import Modal from '../ui/modal/modal';
 import EditUserData from './EditUserData';
@@ -59,8 +61,8 @@ const Tab1 = ({ simpleAction, userData, fetchInitialData, initialData, updateUse
   }
 
   const submitHandler = () => {
-    console.log(values);
-    // const data = userData ? [...userData] : [];
+    const selectedData = userData ? [...userData] : [];
+    console.log('selectedData', selectedData);
     const data = {
       id: initialData.length + 1,
       title: values.title,
@@ -68,8 +70,8 @@ const Tab1 = ({ simpleAction, userData, fetchInitialData, initialData, updateUse
       desc: values.desc,
       imgUrl: values.imgUrl
     }
-    initialData.push(data);
-    simpleAction(initialData);
+    selectedData.push(data);
+    simpleAction(selectedData);
   }
 
   const updateDataHandler = (data, id) => {
@@ -115,9 +117,23 @@ const Tab1 = ({ simpleAction, userData, fetchInitialData, initialData, updateUse
           : 'No Things Found'
         }
         <Grid item xs={12}>
-          <button onClick={() => { setShowModal(true) }}>Click Me</button>
+          <Button
+            variant="contained"
+            color="primary"
+            size="large"
+            className={classes.button}
+            startIcon={<LibraryAddIcon />}
+            style={{ display: 'flex', margin: '0 auto' }}
+            onClick={() => { setShowModal(true) }}
+          >
+            Add Image To Gallery
+          </Button>
           <Modal style={{ padding: '10px' }} open={showModal} click={closeModalHandler}>
-            <Grid container spacing={2}>
+            <Typography align='center' variant="h5" component="h2">
+              Enter details
+            </Typography>
+            <Divider />
+            <Grid style={{ marginTop: '25px' }} container spacing={2}>
               <Grid item xs={6}>
                 <TextField
                   id="filled-start-adornment"

@@ -24,11 +24,18 @@ const Tab2 = (props) => {
   console.log('props', props)
   return (
     <div className={classes.root}>
-      <Grid container spacing={2}>
-        <Typography gutterBottom variant="h5" component="h2">
+            <Typography align='center' variant="h5" component="h2">
+        Gallery
+      </Typography>
+      <Divider />
+      <br />
+      <div style={{ padding: '20px', border: '1px solid black', marginBottom: '20px' }}>
+      <Typography gutterBottom variant="h5" component="h2">
           Recently Added
         </Typography>
         <Divider />
+        <br />
+        <Grid container spacing={2}>
         {userData && userData.length > 0
           ?
           userData.map((ele, index) => (
@@ -52,10 +59,10 @@ const Tab2 = (props) => {
               </Card>
             </Grid>
           ))
-          : 'No Things Found'
+          : 'No Recents'
         }
       </Grid>
-      <br />
+      </div>
       <Grid container spacing={2}>
         {initialData && initialData.length > 0
           ?

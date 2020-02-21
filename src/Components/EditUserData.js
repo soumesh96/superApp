@@ -10,6 +10,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
 import Modal from '../ui/modal/modal';
+import Divider from '@material-ui/core/Divider';
 
 const EditUserData = ({ selectedData, click, updateData }) => {
   const [values, setValues] = useState({
@@ -25,6 +26,11 @@ const EditUserData = ({ selectedData, click, updateData }) => {
 
   return (
     <React.Fragment>
+      <Typography align='center' variant="h5" component="h2">
+        Enter details
+      </Typography>
+      <Divider />
+      <br />
       <Grid container spacing={2}>
         <Grid item xs={6}>
           <TextField
@@ -70,11 +76,10 @@ const EditUserData = ({ selectedData, click, updateData }) => {
             fullWidth
           />
         </Grid>
-        <br />
         <div>
           <Button onClick={click} style={{ position: 'absolute', bottom: '10px', left: '10px' }} variant="contained" color="secondary">
             Go Back
-                  </Button>
+          </Button>
           <Button
             disabled={!values.title || !values.desc || !values.header || !values.imgUrl}
             onClick={() => updateData(values, selectedData.id)}
@@ -82,8 +87,8 @@ const EditUserData = ({ selectedData, click, updateData }) => {
             variant="contained"
             color="primary"
           >
-            Submit
-              </Button>
+            Update
+          </Button>
         </div>
       </Grid>
     </React.Fragment>
