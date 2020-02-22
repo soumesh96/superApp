@@ -7,8 +7,9 @@ import { connect } from 'react-redux';
 
 import RecentAdded from './RecentAdded';
 import GalleryView from './GalleryView';
+import { deleteGalleryImage } from '../store/actions/simpleAction';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(() => ({
   root: {
     flexGrow: 1,
   },
@@ -16,7 +17,10 @@ const useStyles = makeStyles(theme => ({
 
 const Tab2 = (props) => {
   const classes = useStyles();
-  const { userData, initialData } = props;
+  const { userData, initialData, deleteGalleryImage } = props;
+  const deleteImageHandler = (id) => {
+    deleteGalleryImage(id);
+  }
   return (
     <div className={classes.root}>
       <Typography align='center' variant="h5" component="h2">
@@ -29,18 +33,19 @@ const Tab2 = (props) => {
       />
       <GalleryView
         initialData={initialData}
+        deleteImage={deleteImageHandler}
       />
     </div>
   )
 }
 
-// const mapDispatchToProps = dispatch => ({
-//   simpleAction: (data) => dispatch(simpleAction({ data }))
-// })
+const mapDispatchToProps = dispatch => ({
+  deleteGalleryImage: (id) => dispatch(deleteGalleryImage({ id }))
+})
 
 const mapStateToProps = state => ({
   userData: state.simpleReducer.userData,
   initialData: state.simpleReducer.initialData
 })
 
-export default connect(mapStateToProps, null)(Tab2);
+export default connect(mapStateToProps, mapDispatchToProps)(Tab2);

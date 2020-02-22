@@ -5,8 +5,11 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
+import CardActions from '@material-ui/core/CardActions';
+import IconButton from '@material-ui/core/IconButton';
+import DeleteIcon from '@material-ui/icons/Delete';
 
-const GalleryView = ({ initialData }) => {
+const GalleryView = ({ initialData, deleteImage }) => {
   return (
     <React.Fragment>
       <Grid container spacing={2}>
@@ -29,6 +32,11 @@ const GalleryView = ({ initialData }) => {
                       {ele.desc}
                     </Typography>
                   </CardContent>
+                  <CardActions disableSpacing>
+                    <IconButton aria-label="delete">
+                      <DeleteIcon onClick={() => deleteImage(ele.id)} />
+                    </IconButton>
+                  </CardActions>
                 </CardActionArea>
               </Card>
             </Grid>

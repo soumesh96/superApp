@@ -33,7 +33,6 @@ export const fetchInitialData = () => {
         imgUrl: 'https://image.coolblue.be/840x473/content/8ffaf7fede218c80fbb670998d60c7d5'
       }
     ]
-    console.log('from actions')
     dispatch({
       type: 'FETCH_DATA',
       data: data
@@ -46,6 +45,16 @@ export const updateUserData = (payload) => {
     dispatch({
       type: 'UPDATE_DOC',
       data: payload.data
+    })
+  }
+}
+
+export const deleteGalleryImage = (payload) => {
+  console.log('actions', payload)
+  return (dispatch) => {
+    dispatch({
+      type: 'DELETE_DOC',
+      id: payload.id
     })
   }
 }

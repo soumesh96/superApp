@@ -8,14 +8,12 @@ export default (state = initialState, action) => {
     case 'UPLOAD_DOC':
       const initialData = [...state.initialData];
       const payloadData = [...action.data];
-      console.log('reducers actiosn', action.data);
-      console.log('reducers initialData before', initialData);
-      payloadData.map((ele, index) => initialData.findIndex(ele) === index && initialData.push(ele));
-      console.log('reducers initialData after', initialData);
+      payloadData.map((ele, index) => initialData.push(ele));
+      const myData = initialData.filter((ele, index) => initialData.indexOf(ele) === index);
       return {
         ...state,
         userData: action.data,
-        initialData: initialData
+        initialData: myData
       }
     case 'FETCH_DATA':
       return {
@@ -34,6 +32,20 @@ export default (state = initialState, action) => {
       return {
         ...state,
         initialData: requiredData
+      }
+    case 'DELETE_DOC':
+      const initialDatas = [...state.initialData];
+      const userData = [...state.userdata];
+      console.log('reducers newInitialData before', initialDatas)
+      console.log('reducers newUserData before', userData)
+      const newInitialData = initialDatas.filter(ele => ele.id !== action.id);
+      const newUserData = userData.filter(ele => ele.id !== action.id);
+      console.log('reducers newInitialData after', newInitialData)
+      console.log('reducers newUserData after', newUserData)
+      return {
+        ...state,
+        initialData: newInitialData,
+        userdata: newUserData
       }
     default:
       return state

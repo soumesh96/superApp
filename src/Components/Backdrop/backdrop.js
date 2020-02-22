@@ -2,9 +2,8 @@ import React from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import classes from './backdrop.module.css'
 
-const styles = theme => ({
+const styles = () => ({
   icon: {
-    margin: theme.spacing.unit,
     fontSize: 32,
     color: '#fff',
     position: 'fixed',

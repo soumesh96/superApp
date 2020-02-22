@@ -34,10 +34,6 @@ const UploadImage = ({ simpleAction, userData, fetchInitialData, initialData, up
     }
   }, [fetchInitialData, initialData]);
 
-  useEffect(() => {
-    console.log('initialData', initialData)
-  })
-
   const closeModalHandler = () => {
     setShowModal(false);
   }
@@ -54,7 +50,6 @@ const UploadImage = ({ simpleAction, userData, fetchInitialData, initialData, up
 
   const submitHandler = (values) => {
     const selectedData = userData ? [...userData] : [];
-    console.log('selectedData', selectedData);
     const data = {
       id: initialData.length + 1,
       title: values.title,
